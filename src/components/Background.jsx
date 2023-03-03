@@ -17,7 +17,10 @@ const Y_STEP = (4 * -Y_MIN) / MINUTES_IN_A_DAY;
 
 function Ocean() {
   const waterRef = useRef();
-  const waterNormals = useLoader(THREE.TextureLoader, "/waternormals.jpeg");
+  const waterNormals = useLoader(
+    THREE.TextureLoader,
+    process.env.PUBLIC_URL + "/waternormals.jpeg"
+  );
   waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
   const geom = useMemo(() => new THREE.PlaneGeometry(10000, 10000), []);
   const config = useMemo(
