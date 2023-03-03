@@ -1,0 +1,368 @@
+.App {
+  text-align: center;
+  position: relative;
+}
+
+.weather-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  margin: 4rem 0 4rem 0;
+  max-width: 600px;
+  width: 100%;
+  height: fit-content;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border-radius: 10px;
+  padding: 20px 40px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+}
+
+@media only screen and (max-width: 600px) {
+  .content {
+    margin: 0;
+    padding: 20px 20px;
+
+  }
+}
+
+.content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.today-forecast {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #f8f8ff;
+}
+
+.today-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+.today-top .area {
+  font-size: 2rem;
+}
+
+.today-top .temp {
+  font-size: 4rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.today-top .weather {
+  font-size: 1.25rem;
+}
+
+.today-top .range {
+  display: flex;
+  gap: 20px;
+  padding-top: 8px;
+}
+
+.today-bottom {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  width: 100%;
+}
+
+.today-bottom .summary {
+  text-align: left;
+  padding: 15px 20px;
+}
+
+.today-bottom .divider {
+  border-top: 0.5px solid #faf0e6;
+  margin: auto;
+  width: 95%;
+}
+
+.today-bottom-weather {
+  display: flex;
+  overflow-y: hidden;
+  cursor: default;
+  padding-top: 10px;
+  justify-content: space-between;
+  padding-left: 7px;
+}
+
+.today-bottom-weather::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.today-bottom-weather .indiv {
+  flex-shrink: 0;
+  margin-right: 10px;
+  padding: 5px 7px 7px;
+  width: 45px;
+  font-family: Poppins, sans-serif;
+}
+
+.today-bottom-weather .indiv-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.today-bottom-weather .line {
+  padding-bottom: 5px;
+  color: #f8f8ff;
+  font-weight: 700;
+}
+
+.today-bottom-weather .weather-logo {
+  height: 25px;
+  width: 25px;
+}
+
+/* ForecastContent.jsx */
+.forecast-content {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  color: #f8f8ff;
+  width: 100%;
+}
+
+.forecast-content .summary {
+  display: flex;
+  text-align: left;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+.forecast-content .calendar {
+  height: 18px;
+  width: 18px;
+}
+
+.forecast-content .divider {
+  border-top: 0.5px solid #faf0e6;
+  margin: auto;
+  width: 95%;
+}
+
+.forecast-content .ten-day {
+  padding: 0px 5px 7px;
+}
+
+.forecast-content .one-day {
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  gap: 35px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.forecast-content .left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1 1 40%;
+  min-width: 0;
+}
+
+.forecast-content .left .day {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.forecast-content .right {
+  display: flex;
+  flex: 1 0 55%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.forecast-content .temp-bar-container {
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+  border-radius: 3px;
+}
+
+.forecast-content .temp-bar {
+  /* border-top: 3px solid #faf0e6; */
+  margin: auto;
+  height: 5px;
+  border-radius: 3px;
+  /* background: rgb(255, 246, 0);
+  background: linear-gradient(
+    162deg,
+    rgba(255, 246, 0, 1) 0%,
+    rgba(255, 168, 15, 1) 47%,
+    rgba(254, 90, 29, 1) 73%
+  ); */
+  background-clip: content-box !important;
+  background: linear-gradient(
+    162deg,
+    rgba(255, 246, 0, 0.9426605504587156) 0%,
+    rgba(255, 168, 15, 0.9541284403669725) 47%,
+    rgba(254, 90, 29, 0.8876146788990825) 73%
+  );
+}
+
+@media screen and (max-width: 895px) {
+  .forecast-content .one-day {
+    font-size: 16px;
+  }
+}
+
+/* ForecastExtra.jsx */
+
+.forecast-extra {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 25px;
+  row-gap: 30px;
+}
+
+.forecast-extra .indiv {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  border: 1px solid #ffffff;
+  color: #f8f8ff;
+  /* justify-content: center; */
+  height: 175px;
+  padding: 10px;
+}
+
+.forecast-extra .indiv .label {
+  display: flex;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 15px;
+  text-align: left;
+  height: 10%;
+  padding: 5px 8px;
+  align-items: center;
+  gap: 4px;
+}
+
+.forecast-extra .indiv .display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+}
+
+.forecast-extra .indiv .wind {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.forecast-extra .indiv .compass {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  top: 0;
+  left: 0;
+  background-size: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.forecast-extra .indiv .arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 45%;
+  height: 130%;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.forecast-extra .indiv .speed {
+  font-size: 14px;
+}
+
+.forecast-extra .indiv .logo {
+  height: 18px;
+  width: 18px;
+}
+
+.forecast-extra .indiv .display {
+  color: #f8f8ff;
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.forecast-extra .others {
+  justify-content: normal !important;
+  align-items: normal !important;
+  padding-left: 15px;
+  text-align: left;
+}
+
+.forecast-extra .bottom {
+  text-align: left;
+  padding: 0px 18px 10px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 1093px) {
+  .forecast-extra .mobile-font {
+    font-size: 12px !important;
+  }
+  .forecast-extra .bottom {
+    white-space: normal;
+  }
+  .forecast-extra .remove-small {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .forecast-extra .indiv {
+    height: 160px !important;
+  }
+  .forecast-extra .others {
+    font-size: 25px !important;
+  }
+  .forecast-extra .bottom {
+    font-size: 14px !important;
+  }
+}
+
+.aspect-ratio-box {
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.aspect-ratio-box-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
