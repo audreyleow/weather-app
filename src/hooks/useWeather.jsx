@@ -8,7 +8,7 @@ export default function useWeather() {
     async () => {
       const weatherData = await axios
         .get(
-          `http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=Singapore&days=10&aqi=no&alerts=no`
+          `https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=Singapore&days=10&aqi=no&alerts=no`
         )
         .then((response) => response.data);
 
